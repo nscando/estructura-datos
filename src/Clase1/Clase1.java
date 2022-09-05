@@ -12,6 +12,7 @@ public class Clase1 {
       raiz = null;
    }
 
+
    public void insertar(int x) {
       Nodo nuevo = new Nodo();
       nuevo.info = x;
