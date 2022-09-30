@@ -74,6 +74,29 @@ public class Desempeno1 {
       System.out.println("La suma de las posiciones impares es: " + suma);
    }
 
+   public void borrarPrimeroUltimo() {
+      if (raiz != null) {
+         Nodo recorrido = raiz;
+
+         raiz = raiz.siguiente;
+
+         while (recorrido.siguiente != null) {
+            recorrido = recorrido.siguiente;
+         }
+         recorrido = recorrido.anterior;
+         recorrido.siguiente = null;
+         if (raiz != null) {
+            raiz.anterior = null;
+         }
+      }
+      if (cantidad() == 1) {
+         raiz = null;
+         fondo = null;
+      }
+
+
+   }
+
 
    public void imprimir() {
       Nodo recorrido = raiz;
@@ -94,12 +117,14 @@ public class Desempeno1 {
       lista.insertar(5, 8);
       lista.insertar(200, 4);
       lista.insertar(1, 2);
-      lista.insertar(99, 7);
-      lista.insertar(519, 9);
+
       lista.cantidad();
 
       lista.imprimir();
       lista.sumaImpares();
+      lista.borrarPrimeroUltimo();
+      lista.imprimir();
+      lista.cantidad();
    }
 
 }
