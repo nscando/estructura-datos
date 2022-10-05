@@ -94,7 +94,33 @@ public class Desempeno1 {
          fondo = null;
       }
 
+   }
 
+   public void borrarDuplicado() {
+      if (raiz != null) {
+         Nodo recorrido = raiz;//current
+         Nodo aux = null;//index
+         Nodo temporal = null;// temp
+
+         if (raiz == null) {
+            return;
+         } else {
+            while (recorrido != null) {
+               temporal = recorrido;
+               aux = recorrido.siguiente;
+               while (aux != null) {
+                  if (recorrido.info == aux.info) {
+                     temporal.siguiente = aux.siguiente;
+                  } else {
+                     temporal = aux;
+                  }
+                  aux = aux.siguiente;
+               }
+               recorrido = recorrido.siguiente;
+            }
+         }
+
+      }
    }
 
 
@@ -117,6 +143,10 @@ public class Desempeno1 {
       lista.insertar(5, 8);
       lista.insertar(200, 4);
       lista.insertar(1, 2);
+      lista.insertar(80, 99);
+      lista.insertar(80, 99);
+      lista.insertar(80, 99);
+      lista.insertar(80, 99);
 
       lista.cantidad();
 
@@ -125,6 +155,9 @@ public class Desempeno1 {
       lista.borrarPrimeroUltimo();
       lista.imprimir();
       lista.cantidad();
+      lista.borrarDuplicado();
+      lista.imprimir();
+
    }
 
 }
