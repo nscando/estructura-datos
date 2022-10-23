@@ -22,7 +22,7 @@ public class Desempeno1 {
          recorrido = recorrido.siguiente;
          contador++;
       }
-      System.out.println("la cantidad de nodos es  " + contador);
+
       return contador;
    }
 
@@ -96,20 +96,50 @@ public class Desempeno1 {
 
    }
 
+   public void intercambiar() {
+      Nodo recorrido1 = raiz;
+      Nodo recorrido2 = raiz;
+      int posicion1 = 0;
+
+
+      while (recorrido1 != null) {
+         posicion1++;
+
+         recorrido1 = recorrido1.siguiente;
+      }
+
+      for (int i = 1; i < posicion1; i++) {
+         recorrido2 = recorrido2.siguiente;
+      }
+
+      int aux = raiz.info;
+      raiz.info = recorrido2.info;
+      recorrido2.info = aux;
+
+   }
+
    public void borrarDuplicado() {
       if (raiz != null) {
-         Nodo recorrido = raiz;//current
-         Nodo aux = null;//index
-         Nodo temporal = null;// temp
+         Nodo recorrido = raiz;
+         Nodo aux = null;
+         Nodo temporal = null;
+         int valorPimerNodo = 0;
+         int contador = 0;
 
          if (raiz == null) {
             return;
          } else {
             while (recorrido != null) {
+
+               if (contador == 0) {
+                  valorPimerNodo = recorrido.info;
+               }
                temporal = recorrido;
                aux = recorrido.siguiente;
+               contador++;
+
                while (aux != null) {
-                  if (recorrido.info == aux.info) {
+                  if (recorrido.info == valorPimerNodo && recorrido.info == aux.info) {
                      temporal.siguiente = aux.siguiente;
                   } else {
                      temporal = aux;
@@ -126,10 +156,9 @@ public class Desempeno1 {
 
    public void imprimir() {
       Nodo recorrido = raiz;
-      System.out.println("Lista de nodos");
 
       while (recorrido != null) {
-         System.out.println("-" + recorrido.info);
+         System.out.print(recorrido.info + "-");
          recorrido = recorrido.siguiente;
       }
       System.out.println();
@@ -138,25 +167,36 @@ public class Desempeno1 {
 
    public static void main(String[] args) {
       Desempeno1 lista = new Desempeno1();
-
-      lista.insertar(10, 20);
-      lista.insertar(5, 8);
-      lista.insertar(200, 4);
-      lista.insertar(1, 2);
-      lista.insertar(80, 99);
-      lista.insertar(80, 99);
-      lista.insertar(80, 99);
-      lista.insertar(80, 99);
-
-      lista.cantidad();
-
-      lista.imprimir();
-      lista.sumaImpares();
-      lista.borrarPrimeroUltimo();
-      lista.imprimir();
-      lista.cantidad();
-      lista.borrarDuplicado();
-      lista.imprimir();
+      if (lista.vacia()) {
+         System.out.println("Lista de Nodos insertados:");
+         lista.insertar(10, 20);
+         lista.insertar(5, 8);
+         lista.insertar(200, 4);
+         lista.insertar(1, 2);
+         lista.insertar(80, 99);
+         lista.insertar(3, 99);
+         lista.insertar(8, 27);
+         lista.insertar(75, 99);
+         lista.cantidad();
+         lista.imprimir();
+         System.out.println();
+         System.out.println("Intercambio de posicion raiz-fondo: ");
+         lista.intercambiar();
+         lista.imprimir();
+         System.out.println();
+         System.out.println("Suma de impares:");
+         lista.sumaImpares();
+         System.out.println();
+         System.out.println("Eliminar primero y ultimo de la lista: ");
+         lista.borrarPrimeroUltimo();
+         lista.imprimir();
+         System.out.println();
+         System.out.println("Eliminar duplicados: ");
+         lista.borrarDuplicado();
+         lista.imprimir();
+      } else {
+         System.out.println("La lista esta vacia, tenes que insertar nodos para poder probarla.");
+      }
 
    }
 
