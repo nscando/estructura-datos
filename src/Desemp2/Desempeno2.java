@@ -140,6 +140,24 @@ public class Desempeno2 {
       return cantidad;
    }
 
+
+   public void borrarMayorIzq() {
+      if (raiz != null) {
+         if (raiz.izq == null) {
+            raiz = raiz.der;
+         } else {
+            Nodo atras = raiz;
+            Nodo reco = raiz.izq;
+
+            while (reco.der != null) {
+               atras = reco;
+               reco = reco.der;
+            }
+            atras.der = reco.izq;
+         }
+      }
+   }
+
    private void recorrerPreorden(Nodo reco) {
       if (reco != null) {
          System.out.print(reco.info + "-");
@@ -158,7 +176,6 @@ public class Desempeno2 {
       Desempeno2 arbol = new Desempeno2();
       System.out.println();
       arbol.insertar(10);
-      arbol.insertar(5);
       arbol.insertar(7);
       arbol.insertar(9);
       arbol.insertar(20);
@@ -176,7 +193,8 @@ public class Desempeno2 {
       System.out.println();
 
       System.out.println("Existe:");
-      arbol.existePrimerosTresNiveles(15);
+      arbol.existePrimerosTresNiveles(7);
+      arbol.existePrimerosTresNiveles(4);
       System.out.println();
 
       System.out.println("Recorrido preorden:");
@@ -186,6 +204,13 @@ public class Desempeno2 {
 
       System.out.println("La cantidad de Nodos Hoja del Subarbol IZQUIERDO es: ");
       System.out.println(arbol.cantidadNodosHoja());
+
+      arbol.borrarMayorIzq();
+      System.out.println();
+
+      System.out.println("Recorrido preorden con MAYOR VALOR DEL SUBARBOL IZQ BORRADO:");
+      arbol.recorrerPreOrden();
+
    }
 
 }
