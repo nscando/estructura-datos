@@ -141,41 +141,11 @@ public class Desempeno2 {
    }
 
 
-   //Recorre subarbol izq en entre-orden
-   //Visita la raiz
-   //Recorre subarbol der en entre-orden
-   private void recorrerEntreOrden(Nodo reco) {
-      if (reco != null) {
-         recorrerEntreOrden(reco.izq);
-         System.out.print(reco.info + "-");
-         recorrerEntreOrden(reco.der);
-      }
-   }
-
-   public void recorrerEntreOrden() {
-      recorrerEntreOrden(raiz);
-      System.out.println();
-   }
-
-   //Recorre subarbol izq en post-orden
-   //Recorre subarbol der en post-orden
-   //Visita la raiz
-   private void recorrerPostOrden(Nodo reco) {
-      if (reco != null) {
-         recorrerPostOrden(reco.izq);
-         recorrerPostOrden(reco.der);
-         System.out.print(reco.info + "-");
-      }
-   }
-
-   public void recorrerPostOrden() {
-      recorrerPostOrden(raiz);
-      System.out.println();
-   }
 
 
    public static void main(String[] args) {
       Desempeno2 arbol = new Desempeno2();
+      System.out.println();
       arbol.insertar(10);
       arbol.insertar(7);
       arbol.insertar(9);
@@ -184,17 +154,22 @@ public class Desempeno2 {
       arbol.insertar(15);
 
       System.out.println();
+
       arbol.menorValor();
+
       System.out.println();
+
       System.out.println("Altura del arbol: ");
       System.out.println(arbol.retornarAltura());
       System.out.println();
+
       System.out.println("Existe:");
       arbol.existePrimerosTresNiveles(15);
       System.out.println();
-      arbol.recorrerEntreOrden();
+
+      System.out.println("Recorrido preorden:");
       arbol.recorrerPreOrden();
-      arbol.recorrerPostOrden();
+
 
    }
 
