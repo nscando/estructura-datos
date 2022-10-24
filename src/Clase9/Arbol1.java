@@ -88,6 +88,8 @@ public class Arbol1 {
 
 
 
+
+
    public static void main(String[] args) {
       Arbol1 ar = new Arbol1();
       ar.insertar(400);
