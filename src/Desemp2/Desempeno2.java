@@ -64,7 +64,7 @@ public class Desempeno2 {
             }
          }
       } else {
-         System.out.println("El valor "+ x + " que intentas insertar ya existe");
+         System.out.println("El valor " + x + " que intentas insertar ya existe");
       }
    }
 
@@ -124,9 +124,22 @@ public class Desempeno2 {
       return false;
    }
 
-   //Visita la raiz
-   //Recorre subarbol izq en pre-orden
-   //Recorre subarbol der en pre-orden
+   private void cantidadNodosHoja(Nodo reco) {
+      if (reco != null) {
+         if (reco.izq == null) {
+            cantidad++;
+         }
+         cantidadNodosHoja(reco.izq);
+
+      }
+   }
+
+   public int cantidadNodosHoja() {
+      cantidad = 0;
+      cantidadNodosHoja(raiz);
+      return cantidad;
+   }
+
    private void recorrerPreorden(Nodo reco) {
       if (reco != null) {
          System.out.print(reco.info + "-");
@@ -141,17 +154,16 @@ public class Desempeno2 {
    }
 
 
-
-
    public static void main(String[] args) {
       Desempeno2 arbol = new Desempeno2();
       System.out.println();
       arbol.insertar(10);
+      arbol.insertar(5);
       arbol.insertar(7);
       arbol.insertar(9);
       arbol.insertar(20);
       arbol.insertar(15);
-      arbol.insertar(15);
+
 
       System.out.println();
 
@@ -170,7 +182,10 @@ public class Desempeno2 {
       System.out.println("Recorrido preorden:");
       arbol.recorrerPreOrden();
 
+      System.out.println();
 
+      System.out.println("La cantidad de Nodos Hoja del Subarbol IZQUIERDO es: ");
+      System.out.println(arbol.cantidadNodosHoja());
    }
 
 }
